@@ -3,11 +3,7 @@
 options="$@"
 
 declare -i failed; failed=0
-for mkvfile in $(ls *.mkv); do
-    export mkvfile
-    export moviename=$mkvfile
-    transcode-local.sh ${options} || failed+=1
-done
+find . -type f -name '*.mkv' | while read f; do transcode-local.sh "$f"; done
 
 if (($failed>0)); then
     notify "$failed failed" "There were $failed failed transcodes in this batch"
