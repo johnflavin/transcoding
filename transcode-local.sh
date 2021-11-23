@@ -1,4 +1,5 @@
 #!/bin/bash
+source ~/.bash_profile
 mkvfile=$1
 shift
 options="$@"
